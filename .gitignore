@@ -1,0 +1,6 @@
+# build and bin directories
+build/*
+!build/.gitkeep
+
+bin/*
+!bin/.gitkeep
