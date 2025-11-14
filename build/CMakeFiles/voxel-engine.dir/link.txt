@@ -1,0 +1,1 @@
+/usr/bin/c++ "CMakeFiles/voxel-engine.dir/src/main.cpp.o" -o /home/yzd/Documents/repos/voxel-engine/bin/voxel-engine  /usr/local/lib/libraylib.a -L/usr/local/lib -lraylib 
