@@ -4,6 +4,12 @@
 #include <vector>
 #include <raylib.h>
 
+struct RaycastData
+{
+    Voxel* voxel;
+    RayCollision collision;
+};
+
 class Map
 {
 private:
@@ -14,6 +20,7 @@ public:
 
     void draw();
     
-    Voxel* raycast(const Ray& ray);
+    RaycastData raycast(const Ray& ray);
+    void add_voxel(Vector3 pos);
     void remove_voxel(Voxel* voxel);
 };

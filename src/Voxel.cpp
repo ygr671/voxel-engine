@@ -17,6 +17,11 @@ Vector3 const& Voxel::get_size()
   return Voxel::size_;
 }
 
+Vector3 Voxel::get_pos() const
+{
+  return pos_;
+}
+
 BoundingBox Voxel::get_bouding_box() const
 {
   return {

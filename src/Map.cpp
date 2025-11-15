@@ -33,21 +33,27 @@ void Map::draw()
     }
 }
 
-Voxel* Map::raycast(const Ray& ray)
+RaycastData Map::raycast(const Ray& ray)
 {
     float best_distance = MAXFLOAT;
-    Voxel* best_voxel = nullptr;
-    // GetRayCollisionBox();
+    RaycastData data{0};
+    RayCollision col;
     for (Voxel& voxel : voxels_)
     {
-        RayCollision col = GetRayCollisionBox(ray, voxel.get_bouding_box());
+        col = GetRayCollisionBox(ray, voxel.get_bouding_box());
         if (col.hit && col.distance < best_distance)
         {
             best_distance = col.distance;
-            best_voxel = &voxel;
+            data.voxel = &voxel;
+            data.collision = col;
         }
     }
-    return best_voxel;
+    return data;
+}
+
+void Map::add_voxel(Vector3 pos)
+{
+    voxels_.push_back(Voxel(pos, GRAY));
 }
 
 void Map::remove_voxel(Voxel* voxel)

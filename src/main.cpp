@@ -1,9 +1,8 @@
 #include <iostream>
 #include <string>
-#include <type_traits>
 #include <vector>
 #include <raylib.h>
-#include <cmath>
+#include <raymath.h>
 
 #include "includes/Map.hpp"
 #include "includes/GUI.hpp"
@@ -26,7 +25,7 @@ int main()
   camera.fovy = 60.0f;
   camera.projection = CAMERA_PERSPECTIVE;
 
-  Map map(10, 10, GRAY);
+  Map map(20, 20, GRAY);
 
   // For raycasting
   Vector3 voxel_size = Voxel::get_size();
@@ -50,10 +49,23 @@ int main()
     {
       // Raycasting
       ray = GetScreenToWorldRay(gui.get_cursor_position(), camera);
-      Voxel* voxel = map.raycast(ray);
+      Voxel* voxel = map.raycast(ray).voxel;
       if (voxel != nullptr)
       {
         map.remove_voxel(voxel);
+      }
+    }
+    if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
+    {
+      // Raycasting
+      ray = GetScreenToWorldRay(gui.get_cursor_position(), camera);
+      RaycastData rd = map.raycast(ray);
+      Voxel* voxel = rd.voxel;
+      if (voxel != nullptr)
+      {
+        
+        Vector3 pos = Vector3Add(voxel->get_pos(), rd.collision.normal);
+        map.add_voxel(pos);
       }
     }
 

@@ -10,7 +10,8 @@ private:
   Color color_;
 public:
   Voxel(Vector3 pos, Color color);
-  static Vector3 const& get_size(); 
+  static Vector3 const& get_size();
+  Vector3 get_pos() const; 
   BoundingBox get_bouding_box() const;
   void draw();
 };
