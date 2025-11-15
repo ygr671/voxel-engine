@@ -11,6 +11,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # compile_commands.json generation
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# Source files
+file(GLOB SOURCES src/*.cpp)
+
 # NOTE : Modules maybe ?
 
 # Raylib
@@ -18,7 +21,7 @@ find_package(raylib REQUIRED)
 
 
 # Executable
-add_executable(${PROJECT_NAME} src/main.cpp)
+add_executable(${PROJECT_NAME} ${SOURCES})
 
 # Output binary to bin/
 set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
